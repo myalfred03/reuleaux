@@ -3,7 +3,11 @@
 #define IKFAST_NO_MAIN
 
 #define IK_VERSION 61
-#include "mh5_ikfast.cpp"
+//#include "mh5_ikfast.cpp"
+//#include "fanuc_lrmate200ic_ikfast.cpp"
+//#include "r1000ia80f_ikfast.cpp"
+//#include "kr210l150_ikfast.cpp"
+#include "lbr_iiwa_14_ikfast.cpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
