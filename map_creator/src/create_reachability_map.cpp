@@ -95,7 +95,7 @@ int main(int argc, char **argv)
     // The center of every voxels are stored in a vector
 
     sphere_discretization::SphereDiscretization sd;
-    float r = 1;
+    float r = 2.5;
     octomap::point3d origin = octomap::point3d(0, 0, 0);  // This point will be the base of the robot
     octomap::OcTree *tree = sd.generateBoxTree(origin, r, resolution);
     std::vector< octomap::point3d > new_data;
