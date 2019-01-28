@@ -4,13 +4,22 @@
 
 #define IK_VERSION 61
 //#include "mh5_ikfast.cpp"
-//#include "fanuc_lrmate200ic_ikfast.cpp"
-#include "r1000ia80f_ikfast.cpp"
-//#include "kr210l150_ikfast.cpp"
-//#include "lbr_iiwa_14_ikfast.cpp"
+//#include "motoman_sia20d_manipulator_ikfast_solver.cpp" //good
+//#include "fanuc_lrmate200ic_ikfast.cpp" //bad
+//#include "fanuc_lrmate200ic_manipulator_ikfast_solver.cpp"
 //#include "irb2600_ikfast.cpp"
+//#include "kr210l150_ikfast.cpp"
+#include "lbr_iiwa_14_ikfast.cpp"
+//#include "irb2600_ikfast.cpp" //good
+//#include "irb6640_manipulator_ikfast_solver.cpp" //good
 //#include "abb_irb2400_manipulator_ikfast_solver.cpp"
-//#include "cylindrical_ikfast.cpp"
+//#include "fanuc_r1000ia80f_manipulator_ikfast_solver.cpp"
+//#include "fanuc_m10ia_ikfast.cpp" //good
+//#include "ur5_manipulator_ikfast_solver.cpp" //good
+//#include "kuka_kr210_manipulator_ikfast_solver.cpp" //good
+//#include "cartesian_ikfast.cpp"
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>

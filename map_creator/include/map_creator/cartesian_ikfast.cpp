@@ -12,7 +12,7 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 ///
-/// ikfast version 0x10000049 generated on 2019-01-08 11:01:31.280083
+/// ikfast version 0x10000049 generated on 2019-01-10 08:10:56.644865
 /// To compile with gcc:
 ///     gcc -lstdc++ ik.cpp
 /// To compile without any main function as a shared object (might need -llapack):
@@ -297,9 +297,9 @@ inline CheckValue<T> IKPowWithIntegerCheck(T f, int n)
 /// solves the forward kinematics equations.
 /// \param pfree is an array specifying the free joints of the chain.
 IKFAST_API void ComputeFk(const IkReal* j, IkReal* eetrans, IkReal* eerot) {
-eetrans[0]=0;
-eetrans[1]=((-0.55)+(((-1.0)*j[0])));
-eetrans[2]=((-0.125)+(((-1.0)*j[1])));
+eetrans[0]=((-0.5)+j[0]);
+eetrans[1]=((0.45)+(((-1.0)*j[1])));
+eetrans[2]=((0.4)+j[2]);
 }
 
 IKFAST_API int GetNumFreeParameters() { return 0; }
@@ -312,56 +312,51 @@ IKFAST_API int GetIkType() { return 0x33000003; }
 
 class IKSolver {
 public:
-IkReal j2,cj2,sj2,htj2,j2mul,j1,cj1,sj1,htj1,j1mul,j0,cj0,sj0,htj0,j0mul,new_px,px,npx,new_py,py,npy,new_pz,pz,npz,pp;
-unsigned char _ij2[2], _nj2,_ij1[2], _nj1,_ij0[2], _nj0;
+IkReal j0,cj0,sj0,htj0,j0mul,j1,cj1,sj1,htj1,j1mul,j2,cj2,sj2,htj2,j2mul,new_px,px,npx,new_py,py,npy,new_pz,pz,npz,pp;
+unsigned char _ij0[2], _nj0,_ij1[2], _nj1,_ij2[2], _nj2;
 
 IkReal j100, cj100, sj100;
 unsigned char _ij100[2], _nj100;
 bool ComputeIk(const IkReal* eetrans, const IkReal* eerot, const IkReal* pfree, IkSolutionListBase<IkReal>& solutions) {
-j2=numeric_limits<IkReal>::quiet_NaN(); _ij2[0] = -1; _ij2[1] = -1; _nj2 = -1; j1=numeric_limits<IkReal>::quiet_NaN(); _ij1[0] = -1; _ij1[1] = -1; _nj1 = -1; j0=numeric_limits<IkReal>::quiet_NaN(); _ij0[0] = -1; _ij0[1] = -1; _nj0 = -1; 
+j0=numeric_limits<IkReal>::quiet_NaN(); _ij0[0] = -1; _ij0[1] = -1; _nj0 = -1; j1=numeric_limits<IkReal>::quiet_NaN(); _ij1[0] = -1; _ij1[1] = -1; _nj1 = -1; j2=numeric_limits<IkReal>::quiet_NaN(); _ij2[0] = -1; _ij2[1] = -1; _nj2 = -1; 
 for(int dummyiter = 0; dummyiter < 1; ++dummyiter) {
     solutions.Clear();
 px = eetrans[0]; py = eetrans[1]; pz = eetrans[2];
 
-new_px=px;
-new_py=((-1.0)*pz);
-new_pz=((0.55)+py);
+new_px=((1.0)+(((-1.0)*pz)));
+new_py=((-0.45)+py);
+new_pz=((0.5)+px);
 px = new_px; py = new_py; pz = new_pz;
 pp=((px*px)+(py*py)+(pz*pz));
 {
-IkReal verifyeval[1];
-verifyeval[0]=px;
-if( IKabs(verifyeval[0]) < 0.0000010000000000  )
+IkReal j0array[1], cj0array[1], sj0array[1];
+bool j0valid[1]={false};
+_nj0 = 1;
+j0array[0]=pz;
+sj0array[0]=IKsin(j0array[0]);
+cj0array[0]=IKcos(j0array[0]);
+j0valid[0] = true;
+for(int ij0 = 0; ij0 < 1; ++ij0)
 {
-{
-IkReal j2array[1], cj2array[1], sj2array[1];
-bool j2valid[1]={false};
-_nj2 = 1;
-j2array[0]=((-1.0)*pz);
-sj2array[0]=IKsin(j2array[0]);
-cj2array[0]=IKcos(j2array[0]);
-j2valid[0] = true;
-for(int ij2 = 0; ij2 < 1; ++ij2)
-{
-if( !j2valid[ij2] )
+if( !j0valid[ij0] )
 {
     continue;
 }
-_ij2[0] = ij2; _ij2[1] = -1;
-for(int iij2 = ij2+1; iij2 < 1; ++iij2)
+_ij0[0] = ij0; _ij0[1] = -1;
+for(int iij0 = ij0+1; iij0 < 1; ++iij0)
 {
-if( j2valid[iij2] && IKabs(cj2array[ij2]-cj2array[iij2]) < IKFAST_SOLUTION_THRESH && IKabs(sj2array[ij2]-sj2array[iij2]) < IKFAST_SOLUTION_THRESH )
+if( j0valid[iij0] && IKabs(cj0array[ij0]-cj0array[iij0]) < IKFAST_SOLUTION_THRESH && IKabs(sj0array[ij0]-sj0array[iij0]) < IKFAST_SOLUTION_THRESH )
 {
-    j2valid[iij2]=false; _ij2[1] = iij2; break; 
+    j0valid[iij0]=false; _ij0[1] = iij0; break; 
 }
 }
-j2 = j2array[ij2]; cj2 = cj2array[ij2]; sj2 = sj2array[ij2];
+j0 = j0array[ij0]; cj0 = cj0array[ij0]; sj0 = sj0array[ij0];
 
 {
 IkReal j1array[1], cj1array[1], sj1array[1];
 bool j1valid[1]={false};
 _nj1 = 1;
-j1array[0]=((-0.125)+py);
+j1array[0]=((-1.0)*py);
 sj1array[0]=IKsin(j1array[0]);
 cj1array[0]=IKcos(j1array[0]);
 j1valid[0] = true;
@@ -382,53 +377,46 @@ if( j1valid[iij1] && IKabs(cj1array[ij1]-cj1array[iij1]) < IKFAST_SOLUTION_THRES
 j1 = j1array[ij1]; cj1 = cj1array[ij1]; sj1 = sj1array[ij1];
 
 {
-IkReal j0array[1], cj0array[1], sj0array[1];
-bool j0valid[1]={false};
-_nj0 = 1;
-j0array[0]=0;
-sj0array[0]=IKsin(j0array[0]);
-cj0array[0]=IKcos(j0array[0]);
-if( j0array[0] > IKPI )
+IkReal j2array[1], cj2array[1], sj2array[1];
+bool j2valid[1]={false};
+_nj2 = 1;
+j2array[0]=((0.6)+(((-1.0)*px)));
+sj2array[0]=IKsin(j2array[0]);
+cj2array[0]=IKcos(j2array[0]);
+j2valid[0] = true;
+for(int ij2 = 0; ij2 < 1; ++ij2)
 {
-    j0array[0]-=IK2PI;
-}
-else if( j0array[0] < -IKPI )
-{    j0array[0]+=IK2PI;
-}
-j0valid[0] = true;
-for(int ij0 = 0; ij0 < 1; ++ij0)
-{
-if( !j0valid[ij0] )
+if( !j2valid[ij2] )
 {
     continue;
 }
-_ij0[0] = ij0; _ij0[1] = -1;
-for(int iij0 = ij0+1; iij0 < 1; ++iij0)
+_ij2[0] = ij2; _ij2[1] = -1;
+for(int iij2 = ij2+1; iij2 < 1; ++iij2)
 {
-if( j0valid[iij0] && IKabs(cj0array[ij0]-cj0array[iij0]) < IKFAST_SOLUTION_THRESH && IKabs(sj0array[ij0]-sj0array[iij0]) < IKFAST_SOLUTION_THRESH )
+if( j2valid[iij2] && IKabs(cj2array[ij2]-cj2array[iij2]) < IKFAST_SOLUTION_THRESH && IKabs(sj2array[ij2]-sj2array[iij2]) < IKFAST_SOLUTION_THRESH )
 {
-    j0valid[iij0]=false; _ij0[1] = iij0; break; 
+    j2valid[iij2]=false; _ij2[1] = iij2; break; 
 }
 }
-j0 = j0array[ij0]; cj0 = cj0array[ij0]; sj0 = sj0array[ij0];
+j2 = j2array[ij2]; cj2 = cj2array[ij2]; sj2 = sj2array[ij2];
 
 {
 std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(3);
 vinfos[0].jointtype = 17;
-vinfos[0].foffset = j2;
-vinfos[0].indices[0] = _ij2[0];
-vinfos[0].indices[1] = _ij2[1];
-vinfos[0].maxsolutions = _nj2;
+vinfos[0].foffset = j0;
+vinfos[0].indices[0] = _ij0[0];
+vinfos[0].indices[1] = _ij0[1];
+vinfos[0].maxsolutions = _nj0;
 vinfos[1].jointtype = 17;
 vinfos[1].foffset = j1;
 vinfos[1].indices[0] = _ij1[0];
 vinfos[1].indices[1] = _ij1[1];
 vinfos[1].maxsolutions = _nj1;
-vinfos[2].jointtype = 1;
-vinfos[2].foffset = j0;
-vinfos[2].indices[0] = _ij0[0];
-vinfos[2].indices[1] = _ij0[1];
-vinfos[2].maxsolutions = _nj0;
+vinfos[2].jointtype = 17;
+vinfos[2].foffset = j2;
+vinfos[2].indices[0] = _ij2[0];
+vinfos[2].indices[1] = _ij2[1];
+vinfos[2].maxsolutions = _nj2;
 std::vector<int> vfree(0);
 solutions.AddSolution(vinfos,vfree);
 }
@@ -437,14 +425,6 @@ solutions.AddSolution(vinfos,vfree);
 }
 }
 }
-}
-
-} else
-{
-continue; // verifyAllEquations
-
-}
-
 }
 }
 return solutions.GetNumSolutions()>0;
@@ -464,7 +444,7 @@ IKSolver solver;
 return solver.ComputeIk(eetrans,eerot,pfree,solutions);
 }
 
-IKFAST_API const char* GetKinematicsHash() { return "<robot:GenericRobot - Cylindrical (9d4ac23bf16e6f00c2a7de67cfc72ad8)>"; }
+IKFAST_API const char* GetKinematicsHash() { return "<robot:GenericRobot - CartMan (4e62753a4213de4e2394387b16eff177)>"; }
 
 IKFAST_API const char* GetIkFastVersion() { return "0x10000049"; }
 

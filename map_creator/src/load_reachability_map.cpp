@@ -77,7 +77,7 @@ map_creator::WorkSpace loadReach::datahdf5(std::string& map){
   // Creating messages
   map_creator::WorkSpace ws;
   ws.header.stamp = ros::Time::now();
-  ws.header.frame_id = "/my_lab_uni/base_link";
+  ws.header.frame_id = "/my_lab_world/base_link";
   ws.resolution = res;
 
   for (MapVecDoublePtr::iterator it = sphere_col.begin(); it != sphere_col.end(); ++it)
