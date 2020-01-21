@@ -15,3 +15,46 @@ Documentation about Workspace Visualization can be found at: [workspace_visualiz
 Documentation about Base Placement Planner can be found at: [Base Placement Plugin] (https://github.com/ros-industrial-consortium/reuleaux/tree/master/base_placement_plugin)
 
 Please refer to [http://wiki.ros.org/reuleaux] (http://wiki.ros.org/reuleaux) for detailed description and instructions.
+
+Change to run melodic 
+	Test
+
+
+
+
+
+	- reuleaux/map_creator/include/map_creator/mh5_ikfast.cpp:1154:18: error: ‘isnan’ was not declared in this scope
+         else if (isnan(cj4array[0]))
+
+         Possible proble with generate ikfast file from openRave
+
+         Solution
+
+Repaced:
+#include <math.h>
+with:
+#include <cmath>
+and all instances of
+isnan
+with:
+std::isnan
+
+
+
+
+	-	reuleaux/map_creator/src/create_reachability_map.cpp:38:33: note: suggested alternative: ‘forward’
+   std::string file = str(boost::format("%s_r%d_reachability.h5") % k.getRobotName() % resolution);
+
+
+	-	reuleaux/map_creator/src/create_capability_map.cpp:36:18: note: suggested alternative: ‘forward’
+       str(boost::format("%s_r%d_capability.h5") % k.getRobotName() % resolution);
+
+    -   reuleaux/map_creator/src/create_inverse_reachability_map.cpp: In function ‘int main(int, char**)’:
+/home/alfredo/ros_ws/src/reuleaux/map_creator/src/create_inverse_reachability_map.cpp:66:26: error: ‘format’ is not a member of ‘boost’
+       file =  str(boost::format("%s_r%d_Inv_reachability.h5") % k.getRobotName() % res);
+
+       	Solution
+       	
+Add #include <boost/format.hpp>
+
+
