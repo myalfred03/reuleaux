@@ -53,8 +53,15 @@ std::isnan
 /home/alfredo/ros_ws/src/reuleaux/map_creator/src/create_inverse_reachability_map.cpp:66:26: error: ‘format’ is not a member of ‘boost’
        file =  str(boost::format("%s_r%d_Inv_reachability.h5") % k.getRobotName() % res);
 
-       	Solution
+Solution
        	
 Add #include <boost/format.hpp>
 
 
+Images
+
+![image](https://github.com/myalfred03/reuleaux/blob/melodic-test/img/1.png)
+Modelo de robot MH5 Reachability index 10
+
+![image](https://github.com/myalfred03/reuleaux/blob/melodic-test/img/2.png)
+Modelo de robot IRB2600 Reachability index 37

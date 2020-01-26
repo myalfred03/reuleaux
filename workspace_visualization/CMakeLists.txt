@@ -5,8 +5,16 @@ find_package(catkin REQUIRED COMPONENTS
     rviz
     map_creator
 )
-catkin_package(INCLUDE_DIRS  )
-include_directories(include ${catkin_INCLUDE_DIRS})
+catkin_package(INCLUDE_DIRS 
+    src
+    LIBRARIES ${PROJECT_NAME}
+)
+
+include_directories(
+    include
+    src
+    ${catkin_INCLUDE_DIRS}
+    )
 link_directories(${catkin_LIBRARY_DIRS})
 
 set(CMAKE_AUTOMOC ON)
@@ -35,6 +43,9 @@ set(SRC_FILES
 
 add_library(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${catkin_LIBRARIES})
+
+#find_package(class_loader)
+#class_loader_hide_library_symbols(${PROJECT_NAME})
 
 install(TARGETS
   ${PROJECT_NAME}
